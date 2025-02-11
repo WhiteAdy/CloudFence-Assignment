@@ -5,6 +5,7 @@
   -moz-osx-font-smoothing: grayscale;
   --border-radius: 8px;
   --padding: 12px;
+  --color-primary: #5604f7;
 }
 
 * {

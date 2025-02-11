@@ -1,0 +1,23 @@
+.LoadingSpinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pading);
+
+  &_spinner {
+    transform-origin: center;
+    animation: spin 0.75s infinite linear;
+    fill: var(--color-primary);
+  }
+
+  &_text {
+    font-size: 18px;
+    color: var(--color-primary);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

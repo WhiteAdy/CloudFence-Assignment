@@ -1,12 +1,7 @@
-import { VpcNode } from '@components/nodes'
+import { LoadingSpinner } from '@components'
 
 function App() {
-  return (
-    <div>
-      App
-      <VpcNode />
-    </div>
-  )
+  return <LoadingSpinner text="Loading data..." />
 }
 
 export default App
