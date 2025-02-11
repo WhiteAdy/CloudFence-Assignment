@@ -31,7 +31,6 @@
     "vite": "^6.1.0"
   },
   "prettier": {
-    "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
   }

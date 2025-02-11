@@ -1,7 +1,7 @@
 interface LoadingSpinnerProps {
-  text?: string
-  className?: string
-  show?: boolean
+  text?: string;
+  className?: string;
+  show?: boolean;
 }
 
-export type { LoadingSpinnerProps }
+export type { LoadingSpinnerProps };

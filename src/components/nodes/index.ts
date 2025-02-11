@@ -1,1 +1,1 @@
-export { default as VpcNode } from './VpcNode/VpcNode'
+export { default as VpcNode } from './VpcNode/VpcNode';

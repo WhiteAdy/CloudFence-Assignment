@@ -1,5 +1,5 @@
 function VpcNode() {
-  return <div>VpcNode</div>
+  return <div>VpcNode</div>;
 }
 
-export default VpcNode
+export default VpcNode;

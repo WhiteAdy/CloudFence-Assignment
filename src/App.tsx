@@ -1,8 +1,8 @@
-import { LoadingSpinner } from '@components'
-import { useQuery } from '@tanstack/react-query'
-import { fetchData } from '@api'
-import './App.styles.scss'
-import { useEffect } from 'react'
+import { LoadingSpinner } from '@components';
+import { useQuery } from '@tanstack/react-query';
+import { fetchData } from '@api';
+import './App.styles.scss';
+import { useEffect } from 'react';
 
 function App() {
   const {
@@ -13,11 +13,11 @@ function App() {
     queryKey: ['todos'],
     queryFn: fetchData,
     select: (data) => data.record.data,
-  })
+  });
 
   useEffect(() => {
-    if (dataRecords) console.log('dataRecords: ', dataRecords)
-  }, [dataRecords])
+    if (dataRecords) console.log('dataRecords: ', dataRecords);
+  }, [dataRecords]);
 
   return (
     <div className="App">
@@ -31,7 +31,7 @@ function App() {
         <div className="App_Error">No data was found.</div>
       ) : null}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

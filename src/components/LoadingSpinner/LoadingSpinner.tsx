@@ -1,24 +1,24 @@
-import clsx from 'clsx'
-import './LoadingSpinner.styles.scss'
-import { LoadingSpinnerProps } from './LoadingSpinner.types'
-import { useEffect, useState } from 'react'
+import clsx from 'clsx';
+import './LoadingSpinner.styles.scss';
+import { LoadingSpinnerProps } from './LoadingSpinner.types';
+import { useEffect, useState } from 'react';
 
 function LoadingSpinner({
   className,
   text,
   show = false,
 }: LoadingSpinnerProps) {
-  const [internalShow, setInternalShow] = useState(show)
+  const [internalShow, setInternalShow] = useState(show);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setInternalShow(show)
-    }, 200)
+      setInternalShow(show);
+    }, 200);
 
     return () => {
-      clearTimeout(timeout)
-    }
-  }, [show])
+      clearTimeout(timeout);
+    };
+  }, [show]);
 
   return (
     <div
@@ -43,7 +43,7 @@ function LoadingSpinner({
       </svg>
       {text && <span className="LoadingSpinner_text">{text}</span>}
     </div>
-  )
+  );
 }
 
-export default LoadingSpinner
+export default LoadingSpinner;
