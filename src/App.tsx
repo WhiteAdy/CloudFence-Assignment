@@ -1,4 +1,4 @@
-import { LoadingSpinner } from '@components';
+import { ErrorMessage, LoadingSpinner } from '@components';
 import { useQuery } from '@tanstack/react-query';
 import { fetchData } from '@api';
 import './App.styles.scss';
@@ -26,7 +26,7 @@ function App() {
         show={isLoading}
         text="Loading data..."
       />
-      {error && <div className="App_Error">Error: {error.message}</div>}
+      {error && <ErrorMessage text={error.message} />}
       {!dataRecords?.length ? (
         <div className="App_Error">No data was found.</div>
       ) : null}
