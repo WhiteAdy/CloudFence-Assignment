@@ -16,7 +16,9 @@ function App() {
   });
 
   useEffect(() => {
-    if (dataRecords) console.log('dataRecords: ', dataRecords);
+    if (dataRecords) {
+      console.log('dataRecords: ', dataRecords);
+    }
   }, [dataRecords]);
 
   return (

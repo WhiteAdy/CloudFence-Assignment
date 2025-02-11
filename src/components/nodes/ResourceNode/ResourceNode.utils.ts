@@ -1,0 +1,7 @@
+const RESOURCE_NODE_UTILS = {
+  WIDTH: 150,
+  HEIGHT: 150,
+  PADDING: 20,
+};
+
+export { RESOURCE_NODE_UTILS };

@@ -1,0 +1,11 @@
+.VPCNode {
+  border-radius: var(--border-radius);
+  border: 20px solid var(--color-primary);
+  padding: 20px;
+  color: var(--color-primary);
+
+  &_vpcId {
+    font-size: 55px;
+    font-weight: bold;
+  }
+}

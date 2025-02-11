@@ -1,0 +1,14 @@
+.NetworkInterfaceNode {
+  background-color: mediumseagreen;
+  color: white;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border-radius: var(--border-radius);
+  padding: 4px;
+
+  &_networkInterfaceId {
+    font-size: 7px;
+    font-weight: bold;
+  }
+}

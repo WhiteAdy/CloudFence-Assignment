@@ -1,0 +1,16 @@
+.ResourceNode {
+  background-color: orange;
+  border-radius: var(--border-radius);
+  padding: 8px;
+
+  &_resourceName {
+    font-size: 14px;
+    font-weight: bold;
+    overflow-wrap: break-word;
+  }
+
+  &_resourceARN {
+    overflow-wrap: break-word;
+    font-size: 8px;
+  }
+}

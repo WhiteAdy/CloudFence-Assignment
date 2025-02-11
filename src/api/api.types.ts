@@ -1,4 +1,4 @@
-interface DataRecord {
+interface DataRecord extends Record<string, unknown> {
   accountId: string;
   networkInterfaceId: string;
   resourceARN: string;
@@ -78,4 +78,4 @@ type NetworkActivityValue = boolean | 'restricted' | 'none' | 'full' | null;
 
 type EmptyObject = Record<string, never>;
 
-export type { Data };
+export type { Data, DataRecord };
