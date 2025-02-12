@@ -53,7 +53,6 @@ const RESOURCE_NODE_UTILS = {
                   index * (RESOURCE_NODE_UTILS.HEIGHT + SUBNET_NODE_UTILS.GAP),
               },
               draggable: false,
-              // selectable: false,
             };
           },
         ),

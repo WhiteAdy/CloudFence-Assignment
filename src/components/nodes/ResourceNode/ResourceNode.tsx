@@ -4,7 +4,6 @@ import { RESOURCE_NODE_UTILS } from './ResourceNode.utils';
 import { CustomNodeProps } from '../nodes.types';
 
 function ResourceNode({ data: { record }, ...nodeProps }: CustomNodeProps) {
-  console.log('aici nodeProps.selected', nodeProps.selected);
   return (
     <div
       className="ResourceNode"
