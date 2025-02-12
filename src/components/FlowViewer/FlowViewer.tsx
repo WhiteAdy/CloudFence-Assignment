@@ -13,29 +13,28 @@ import {
   SUBNET_NODE_UTILS,
   VPC_NODE_UTILS,
 } from '../nodes';
-import { customNodeTypes } from './FlowViewer.utils';
+import { computeReactFlowEdges, customNodeTypes } from './FlowViewer.utils';
 import '@xyflow/react/dist/style.css';
 import { useCallback, useMemo } from 'react';
 
 function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
-  const vpcNodes = VPC_NODE_UTILS.computeReactFlowNodes(dataRecords);
-  const subnetNodes = SUBNET_NODE_UTILS.computeReactFlowNodes(dataRecords);
-  const resourceNodes = RESOURCE_NODE_UTILS.computeReactFlowNodes(dataRecords);
-  const networkInterfaceNodes =
-    NETWORK_INTERFACE_NODE_UTILS.computeReactFlowNodes(dataRecords);
-
-  const allNodes = useMemo(
-    () => [
-      ...vpcNodes,
-      ...subnetNodes,
-      ...resourceNodes,
-      ...networkInterfaceNodes,
-    ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+  const computedNodesRecord = useMemo(
+    () => ({
+      vpcNodes: VPC_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      subnetNodes: SUBNET_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      resourceNodes: RESOURCE_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      networkInterfaceNodes:
+        NETWORK_INTERFACE_NODE_UTILS.computeReactFlowNodes(dataRecords),
+    }),
+    [dataRecords],
   );
 
-  const allEdges = useMemo(() => [], []);
+  const allNodes = Object.values(computedNodesRecord).flat();
+
+  const allEdges = useMemo(
+    () => computeReactFlowEdges(dataRecords),
+    [dataRecords],
+  );
 
   const [nodesState, _setNodesState, onNodesChange] = useNodesState(allNodes);
   const [edgesState, setEdgesState, onEdgesChange] = useEdgesState(allEdges);
