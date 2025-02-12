@@ -1,11 +1,12 @@
 import { DataRecord } from '@api';
 import {
-  CustomNodeProps,
+  CustomNodeData,
   NETWORK_INTERFACE_NODE_UTILS,
   NodeType,
   RESOURCE_NODE_UTILS,
   VPC_NODE_UTILS,
 } from '@components';
+import { Node } from '@xyflow/react';
 
 const GAP = 50;
 
@@ -26,7 +27,7 @@ const SUBNET_NODE_UTILS = {
   },
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
-  ): Array<CustomNodeProps> => {
+  ): Array<Node<CustomNodeData>> => {
     const subnetRecords = Object.groupBy(
       allRecords,
       (record) => record.subnetId,

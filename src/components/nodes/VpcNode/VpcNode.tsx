@@ -1,8 +1,8 @@
 import './VPCNode.styles.scss';
-import { CustomNodeProps } from '../nodes.types';
+import { CustomNodeComponentProps } from '../nodes.types';
 import { VPC_NODE_UTILS } from './VpcNode.utils';
 
-function VpcNode({ data: { record, allRecords } }: CustomNodeProps) {
+function VpcNode({ data: { record, allRecords } }: CustomNodeComponentProps) {
   return (
     <div
       className="VPCNode"

@@ -1,25 +1,49 @@
 .ResourceNode {
   background-color: orange;
   border-radius: var(--border-radius);
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
   gap: 4px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s var(--transition-timing-function);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 1fr;
+  gap: 15px;
+
+  &_resourceName,
+  &_resourceARN {
+    // height: 100%;
+    // display: grid;
+    // place-items: center;
+  }
 
   &_resourceName {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     overflow-wrap: anywhere;
+    padding-inline: 20px;
+    // grid-row: 1 / 2;
+    // grid-column: 1 / 2;
   }
 
   &_resourceARN {
     overflow-wrap: anywhere;
     font-size: 8px;
+    // grid-row: 1 / 2;
+    // grid-column: 1 / 2;
+    // opacity: 0;
+  }
+
+  &_details {
+    align-self: center;
   }
 
   &--isZoomed {
-    background-color: red;
+    background-color: darkorange;
+
+    .ResourceNode {
+      // &_resourceName {
+      // }
+    }
   }
 }

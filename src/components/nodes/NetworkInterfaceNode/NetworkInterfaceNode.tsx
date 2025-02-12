@@ -1,6 +1,6 @@
 import './NetworkInterfaceNode.styles.scss';
 import { NETWORK_INTERFACE_NODE_UTILS } from './NetworkInterfaceNode.utils';
-import { CustomNodeProps } from '../nodes.types';
+import { CustomNodeComponentProps } from '../nodes.types';
 import { Handle, Position, useReactFlow, useViewport } from '@xyflow/react';
 import { useCallback } from 'react';
 import clsx from 'clsx';
@@ -8,7 +8,7 @@ import clsx from 'clsx';
 function NetworkInterfaceNode({
   data: { record },
   ...nodeProps
-}: CustomNodeProps) {
+}: CustomNodeComponentProps) {
   const { zoom } = useViewport();
   const { setCenter } = useReactFlow();
 
@@ -30,6 +30,7 @@ function NetworkInterfaceNode({
         height: NETWORK_INTERFACE_NODE_UTILS.HEIGHT,
       }}
       onClick={onClickNetworkInterface}
+      type="button"
     >
       <span className="NetworkInterfaceNode_vpcId">
         {record.networkInterfaceId}

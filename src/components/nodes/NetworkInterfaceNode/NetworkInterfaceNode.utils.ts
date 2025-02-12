@@ -1,6 +1,7 @@
 import { DataRecord } from '@api';
-import { CustomNodeProps, NodeType } from '../nodes.types';
+import { CustomNodeData, NodeType } from '../nodes.types';
 import { RESOURCE_NODE_UTILS, SUBNET_NODE_UTILS } from '@components';
+import { Node } from '@xyflow/react';
 
 const GAP_BETWEEN_NODES = 10;
 
@@ -10,7 +11,7 @@ const NETWORK_INTERFACE_NODE_UTILS = {
   GAP_BETWEEN_NODES,
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
-  ): Array<CustomNodeProps> => {
+  ): Array<Node<CustomNodeData>> => {
     const resourceRecordsGrouped = Object.groupBy(
       allRecords,
       (record) => record.resourceARN,

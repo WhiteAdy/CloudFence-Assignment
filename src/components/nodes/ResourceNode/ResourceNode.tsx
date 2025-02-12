@@ -1,11 +1,14 @@
 import { Handle, Position, useReactFlow, useViewport } from '@xyflow/react';
 import './ResourceNode.styles.scss';
 import { RESOURCE_NODE_UTILS } from './ResourceNode.utils';
-import { CustomNodeProps } from '../nodes.types';
+import { CustomNodeComponentProps } from '../nodes.types';
 import clsx from 'clsx';
 import { useCallback } from 'react';
 
-function ResourceNode({ data: { record }, ...nodeProps }: CustomNodeProps) {
+function ResourceNode({
+  data: { record },
+  ...nodeProps
+}: CustomNodeComponentProps) {
   const { zoom } = useViewport();
   const { setCenter } = useReactFlow();
 
@@ -23,11 +26,35 @@ function ResourceNode({ data: { record }, ...nodeProps }: CustomNodeProps) {
       style={{
         width: RESOURCE_NODE_UTILS.WIDTH,
         height: RESOURCE_NODE_UTILS.HEIGHT,
+        padding: RESOURCE_NODE_UTILS.PADDING,
       }}
       onClick={onClickResource}
+      type="button"
     >
-      <span className="ResourceNode_resourceName">{record.resourceName}</span>
-      <span className="ResourceNode_resourceARN">{record.resourceARN}</span>
+      <span
+        className="ResourceNode_resourceName"
+        style={{
+          translate: RESOURCE_NODE_UTILS.computeResourceNameTranslate(zoom),
+          scale: RESOURCE_NODE_UTILS.computeResourceNameScale(zoom),
+        }}
+      >
+        {record.resourceName}
+      </span>
+      <span
+        className="ResourceNode_resourceARN"
+        style={{
+          scale: RESOURCE_NODE_UTILS.computeResourceArnScaleOrOpacity(zoom),
+          opacity: RESOURCE_NODE_UTILS.computeResourceArnScaleOrOpacity(zoom),
+        }}
+      >
+        {record.resourceARN}
+      </span>
+      <div
+        className="
+      ResourceNode_details"
+      >
+        caca
+      </div>
       <Handle
         type="target"
         position={Position.Right}

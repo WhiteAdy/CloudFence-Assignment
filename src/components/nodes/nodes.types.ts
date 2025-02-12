@@ -8,12 +8,12 @@ enum NodeType {
   NETWORK_INTERFACE = 'NETWORK_INTERFACE',
 }
 
-type CustomNodeProps = NodeProps<
-  Node<{
-    record: DataRecord;
-    allRecords: Array<DataRecord>;
-  }>
->;
+interface CustomNodeData extends Record<string, unknown> {
+  record: DataRecord;
+  allRecords: Array<DataRecord>;
+}
+
+type CustomNodeComponentProps = NodeProps<Node<CustomNodeData>>;
 
 export { NodeType };
-export type { CustomNodeProps };
+export type { CustomNodeData, CustomNodeComponentProps };

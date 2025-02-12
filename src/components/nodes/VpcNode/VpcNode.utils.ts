@@ -1,7 +1,8 @@
 import { DataRecord } from '@api';
 import { SUBNET_NODE_UTILS } from '../SubnetNode/SubnetNode.utils';
-import { CustomNodeProps, NodeType } from '../nodes.types';
+import { CustomNodeData, NodeType } from '../nodes.types';
 import { RESOURCE_NODE_UTILS } from '../ResourceNode/ResourceNode.utils';
+import { Node } from '@xyflow/react';
 
 const computeVpcNodeWidth = (allRecords: Array<DataRecord>) => {
   const subnets = Object.groupBy(allRecords, (record) => record.subnetId);
@@ -38,7 +39,7 @@ const VPC_NODE_UTILS = {
   },
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
-  ): Array<CustomNodeProps> => {
+  ): Array<Node<CustomNodeData>> => {
     const vpcRecords = Object.groupBy(allRecords, (record) => record.vpcId);
 
     return Object.entries(vpcRecords).map(

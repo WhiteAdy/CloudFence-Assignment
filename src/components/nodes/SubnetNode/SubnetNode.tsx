@@ -1,9 +1,11 @@
-import { CustomNodeProps } from '../nodes.types';
+import { CustomNodeComponentProps } from '../nodes.types';
 import { RESOURCE_NODE_UTILS } from '../ResourceNode/ResourceNode.utils';
 import './SubnetNode.styles.scss';
 import { SUBNET_NODE_UTILS } from './SubnetNode.utils';
 
-function SubnetNode({ data: { record, allRecords } }: CustomNodeProps) {
+function SubnetNode({
+  data: { record, allRecords },
+}: CustomNodeComponentProps) {
   return (
     <div
       className="SubnetNode"
