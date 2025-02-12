@@ -6,9 +6,15 @@
   justify-items: center;
   border-radius: var(--border-radius);
   padding: 4px;
+  border: 2px solid black;
+  cursor: pointer;
 
   &_networkInterfaceId {
     font-size: 7px;
     font-weight: bold;
+  }
+
+  &--isZoomed {
+    background-color: lightblue;
   }
 }

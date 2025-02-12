@@ -17,7 +17,7 @@ function SubnetNode({ data: { record, allRecords } }: CustomNodeProps) {
         ),
       }}
     >
-      <span className="SubnetNode_vpcId">{record.subnetId}</span>
+      <span className="SubnetNode_subnetId">{record.subnetId}</span>
     </div>
   );
 }

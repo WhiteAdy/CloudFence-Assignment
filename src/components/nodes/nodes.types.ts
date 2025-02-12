@@ -1,5 +1,5 @@
 import { DataRecord } from '@api';
-import { Node } from '@xyflow/react';
+import { Node, NodeProps } from '@xyflow/react';
 
 enum NodeType {
   VPC = 'VPC',
@@ -8,10 +8,12 @@ enum NodeType {
   NETWORK_INTERFACE = 'NETWORK_INTERFACE',
 }
 
-type CustomNodeProps = Node<{
-  record: DataRecord;
-  allRecords: Array<DataRecord>;
-}>;
+type CustomNodeProps = NodeProps<
+  Node<{
+    record: DataRecord;
+    allRecords: Array<DataRecord>;
+  }>
+>;
 
 export { NodeType };
 export type { CustomNodeProps };
