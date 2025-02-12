@@ -3,11 +3,11 @@ import { CustomNodeData, NodeType } from '../nodes.types';
 import { RESOURCE_NODE_UTILS, SUBNET_NODE_UTILS } from '@components';
 import { Node } from '@xyflow/react';
 
-const GAP_BETWEEN_NODES = 10;
+const GAP_BETWEEN_NODES = 25;
 
 const NETWORK_INTERFACE_NODE_UTILS = {
-  WIDTH: 50,
-  HEIGHT: 50,
+  WIDTH: 150,
+  HEIGHT: 150,
   GAP_BETWEEN_NODES,
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
@@ -27,10 +27,7 @@ const NETWORK_INTERFACE_NODE_UTILS = {
           data: { record, allRecords },
           parentId: resourceARN,
           position: {
-            x:
-              RESOURCE_NODE_UTILS.WIDTH +
-              SUBNET_NODE_UTILS.PADDING +
-              SUBNET_NODE_UTILS.GAP,
+            x: RESOURCE_NODE_UTILS.WIDTH + SUBNET_NODE_UTILS.PADDING,
             y:
               index * (NETWORK_INTERFACE_NODE_UTILS.HEIGHT + GAP_BETWEEN_NODES),
           },

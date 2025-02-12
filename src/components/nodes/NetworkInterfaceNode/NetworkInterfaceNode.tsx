@@ -16,7 +16,7 @@ function NetworkInterfaceNode({
     setCenter(
       nodeProps.positionAbsoluteX + nodeProps.width! / 2,
       nodeProps.positionAbsoluteY + nodeProps.height! / 2,
-      { zoom: 3.1, duration: 500 },
+      { zoom: 5, duration: 500 },
     );
   }, [nodeProps, setCenter]);
 
@@ -32,7 +32,7 @@ function NetworkInterfaceNode({
       onClick={onClickNetworkInterface}
       type="button"
     >
-      <span className="NetworkInterfaceNode_vpcId">
+      <span className="NetworkInterfaceNode_networkInterfaceId">
         {record.networkInterfaceId}
       </span>
       <Handle

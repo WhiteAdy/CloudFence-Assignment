@@ -10,11 +10,20 @@
   cursor: pointer;
 
   &_networkInterfaceId {
-    font-size: 7px;
+    font-size: 20px;
     font-weight: bold;
+    transition: all 0.4s var(--transition-timing-function);
   }
 
   &--isZoomed {
     background-color: lightblue;
+
+    .NetworkInterfaceNode {
+      &_networkInterfaceId {
+        color: black;
+        translate: -50px -85px;
+        scale: 0.5;
+      }
+    }
   }
 }

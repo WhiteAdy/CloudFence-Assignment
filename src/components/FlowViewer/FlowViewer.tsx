@@ -53,7 +53,7 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       minZoom={0.1}
-      maxZoom={5}
+      maxZoom={5.5}
     >
       <Background />
     </ReactFlow>

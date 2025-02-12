@@ -4,13 +4,19 @@ import { RESOURCE_NODE_UTILS } from './ResourceNode.utils';
 import { CustomNodeComponentProps } from '../nodes.types';
 import clsx from 'clsx';
 import { useCallback } from 'react';
+import { ArrowRightIcon, NETWORK_INTERFACE_NODE_UTILS } from '@components';
 
 function ResourceNode({
-  data: { record },
+  data: { record, allRecords },
   ...nodeProps
 }: CustomNodeComponentProps) {
   const { zoom } = useViewport();
-  const { setCenter } = useReactFlow();
+  const { setCenter, getNode } = useReactFlow();
+  const networkInterfacesForResource =
+    RESOURCE_NODE_UTILS.getNetworkInterfacesForAResource(
+      allRecords,
+      record.resourceARN,
+    );
 
   const onClickResource = useCallback(() => {
     setCenter(
@@ -19,6 +25,24 @@ function ResourceNode({
       { zoom: 2.5, duration: 500 },
     );
   }, [nodeProps, setCenter]);
+
+  const onClickViewNetworkInterface = (networkInterfaceId: string) => {
+    const networkInterfaceNode = getNode(networkInterfaceId)!;
+    setTimeout(() => {
+      setCenter(
+        nodeProps.positionAbsoluteX +
+          networkInterfaceNode.position.x +
+          NETWORK_INTERFACE_NODE_UTILS.WIDTH / 2,
+        nodeProps.positionAbsoluteY +
+          networkInterfaceNode.position.y +
+          NETWORK_INTERFACE_NODE_UTILS.HEIGHT / 2,
+        {
+          zoom: 5,
+          duration: 500,
+        },
+      );
+    }, 100);
+  };
 
   return (
     <button
@@ -52,8 +76,25 @@ function ResourceNode({
       <div
         className="
       ResourceNode_details"
+        style={{
+          scale: RESOURCE_NODE_UTILS.computeResourceArnScaleOrOpacity(zoom),
+          opacity: RESOURCE_NODE_UTILS.computeResourceArnScaleOrOpacity(zoom),
+        }}
       >
-        caca
+        <span className="ResourceNode_details_left">Private IP</span>
+        <span className="ResourceNode_details_right">192.168.0.0</span>
+        <span className="ResourceNode_details_left">Public IP:</span>
+        <span className="ResourceNode_details_right">188.26.8.136</span>
+        {networkInterfacesForResource?.map(({ networkInterfaceId }, index) => (
+          <div
+            key={`go-to-${networkInterfaceId}-${index}`}
+            className="ResourceNode_details_bottom"
+            onClick={() => onClickViewNetworkInterface(networkInterfaceId)}
+          >
+            View network interface <b>{networkInterfaceId}</b>{' '}
+            <ArrowRightIcon />
+          </div>
+        ))}
       </div>
       <Handle
         type="target"

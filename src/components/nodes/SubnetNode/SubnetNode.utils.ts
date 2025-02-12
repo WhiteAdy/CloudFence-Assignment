@@ -8,12 +8,11 @@ import {
 } from '@components';
 import { Node } from '@xyflow/react';
 
-const GAP = 50;
+const GAP = 200;
 
 const SUBNET_NODE_UTILS = {
-  WIDTH:
-    2 * (RESOURCE_NODE_UTILS.WIDTH + NETWORK_INTERFACE_NODE_UTILS.WIDTH) + GAP,
-  PADDING: 75,
+  WIDTH: 2 * (RESOURCE_NODE_UTILS.WIDTH + NETWORK_INTERFACE_NODE_UTILS.WIDTH),
+  PADDING: 125,
   GAP,
   getRecordsForSubnetId: (allRecords: Array<DataRecord>, subnetId: string) => {
     return allRecords.filter((record) => record.subnetId === subnetId);

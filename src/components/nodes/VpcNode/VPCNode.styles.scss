@@ -5,7 +5,12 @@
   color: var(--color-primary);
 
   &_vpcId {
-    font-size: 55px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 75px;
     font-weight: bold;
+    background-color: white;
+    padding-inline: 20px;
+    translate: 30px -80px;
   }
 }

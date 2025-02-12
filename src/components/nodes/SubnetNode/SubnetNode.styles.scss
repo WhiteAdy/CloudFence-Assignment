@@ -1,11 +1,15 @@
 .SubnetNode {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: var(--border-radius);
-  border: 10px dashed gray;
+  border: 5px dashed gray;
   padding: 8px;
 
   &_subnetId {
-    font-size: 30px;
+    background-color: white;
+    padding-inline: 15px;
+    font-size: 40px;
     font-weight: bold;
+    display: inline-block;
+    translate: 20px -40px;
   }
 }

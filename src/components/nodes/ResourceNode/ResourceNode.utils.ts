@@ -3,8 +3,8 @@ import { CustomNodeData, NodeType } from '../nodes.types';
 import { NETWORK_INTERFACE_NODE_UTILS, SUBNET_NODE_UTILS } from '@components';
 import { Node } from '@xyflow/react';
 
-const MIN_ZOOM_THRESHOLD = 1.2;
-const MAX_ZOOM_THRESHOLD = 2.5;
+const MIN_ZOOM_THRESHOLD = 0.7;
+const MAX_ZOOM_THRESHOLD = 2;
 
 const getUniqueResourcesForASubnet = (
   allRecords: Array<DataRecord>,
@@ -27,16 +27,14 @@ const getUniqueResourcesForASubnet = (
 };
 
 const computeResourceNameTranslate = (zoom: number) => {
-  if (zoom < RESOURCE_NODE_UTILS.MIN_ZOOM_THRESHOLD) {
-    return '0 65px';
-  } else if (zoom > RESOURCE_NODE_UTILS.MAX_ZOOM_THRESHOLD) {
+  if (zoom < MIN_ZOOM_THRESHOLD) {
+    return '0 125px';
+  } else if (zoom > MAX_ZOOM_THRESHOLD) {
     return '0 0px';
   }
   const scale =
-    (zoom - RESOURCE_NODE_UTILS.MIN_ZOOM_THRESHOLD) /
-    (RESOURCE_NODE_UTILS.MAX_ZOOM_THRESHOLD -
-      RESOURCE_NODE_UTILS.MIN_ZOOM_THRESHOLD);
-  const translateY = 65 - 65 * scale;
+    (zoom - MIN_ZOOM_THRESHOLD) / (MAX_ZOOM_THRESHOLD - MIN_ZOOM_THRESHOLD);
+  const translateY = 125 * (1 - scale);
   return `0 ${translateY}px`;
 };
 
@@ -67,9 +65,14 @@ const computeResourceArnScaleOrOpacity = (zoom: number) => {
   return scale;
 };
 
+const getNetworkInterfacesForAResource = (
+  allRecords: Array<DataRecord>,
+  resourceARN: string,
+) => Object.groupBy(allRecords, (record) => record.resourceARN)[resourceARN];
+
 const RESOURCE_NODE_UTILS = {
-  WIDTH: 200,
-  HEIGHT: 200,
+  WIDTH: 300,
+  HEIGHT: 300,
   PADDING: 20,
   MIN_ZOOM_THRESHOLD,
   MAX_ZOOM_THRESHOLD,
@@ -77,6 +80,7 @@ const RESOURCE_NODE_UTILS = {
   computeResourceNameTranslate,
   computeResourceNameScale,
   computeResourceArnScaleOrOpacity,
+  getNetworkInterfacesForAResource,
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
   ): Array<Node<CustomNodeData>> => {
