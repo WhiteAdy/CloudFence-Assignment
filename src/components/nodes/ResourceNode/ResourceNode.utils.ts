@@ -23,8 +23,8 @@ const getUniqueResourcesForASubnet = (
 };
 
 const RESOURCE_NODE_UTILS = {
-  WIDTH: 150,
-  HEIGHT: 150,
+  WIDTH: 165,
+  HEIGHT: 165,
   PADDING: 20,
   getUniqueResourcesForASubnet,
   computeReactFlowNodes: (

@@ -8,6 +8,7 @@ import {
   useNodesState,
 } from '@xyflow/react';
 import {
+  NETWORK_INTERFACE_NODE_UTILS,
   RESOURCE_NODE_UTILS,
   SUBNET_NODE_UTILS,
   VPC_NODE_UTILS,
@@ -20,9 +21,16 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
   const vpcNodes = VPC_NODE_UTILS.computeReactFlowNodes(dataRecords);
   const subnetNodes = SUBNET_NODE_UTILS.computeReactFlowNodes(dataRecords);
   const resourceNodes = RESOURCE_NODE_UTILS.computeReactFlowNodes(dataRecords);
+  const networkInterfaceNodes =
+    NETWORK_INTERFACE_NODE_UTILS.computeReactFlowNodes(dataRecords);
 
   const allNodes = useMemo(
-    () => [...vpcNodes, ...subnetNodes, ...resourceNodes],
+    () => [
+      ...vpcNodes,
+      ...subnetNodes,
+      ...resourceNodes,
+      ...networkInterfaceNodes,
+    ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
@@ -45,6 +53,8 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
+      minZoom={0.1}
+      maxZoom={5}
     >
       <Background />
     </ReactFlow>
