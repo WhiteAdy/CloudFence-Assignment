@@ -1,4 +1,4 @@
-import { ErrorMessage, LoadingSpinner } from '@components';
+import { ErrorMessage, FlowViewer, LoadingSpinner } from '@components';
 import { useQuery } from '@tanstack/react-query';
 import { fetchData } from '@api';
 import './App.styles.scss';
@@ -31,7 +31,9 @@ function App() {
       {error && <ErrorMessage text={error.message} />}
       {!dataRecords?.length ? (
         <div className="App_Error">No data was found.</div>
-      ) : null}
+      ) : (
+        <FlowViewer dataRecords={dataRecords} />
+      )}
     </div>
   );
 }

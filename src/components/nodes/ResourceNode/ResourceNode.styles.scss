@@ -2,6 +2,9 @@
   background-color: orange;
   border-radius: var(--border-radius);
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
   &_resourceName {
     font-size: 14px;

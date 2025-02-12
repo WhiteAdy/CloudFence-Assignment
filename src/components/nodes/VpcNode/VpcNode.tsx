@@ -2,12 +2,7 @@ import './VPCNode.styles.scss';
 import { CustomNodeProps } from '../nodes.types';
 import { VPC_NODE_UTILS } from './VpcNode.utils';
 
-function VpcNode({
-  data: {
-    record: { vpcId },
-    allRecords,
-  },
-}: CustomNodeProps) {
+function VpcNode({ data: { record, allRecords } }: CustomNodeProps) {
   return (
     <div
       className="VPCNode"
@@ -16,7 +11,7 @@ function VpcNode({
         height: VPC_NODE_UTILS.computeHeight(allRecords),
       }}
     >
-      <span className="VPCNode_vpcId">{vpcId}</span>
+      <span className="VPCNode_vpcId">{record.vpcId}</span>
     </div>
   );
 }

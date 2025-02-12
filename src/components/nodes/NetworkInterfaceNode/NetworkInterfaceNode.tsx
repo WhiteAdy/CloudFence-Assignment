@@ -1,11 +1,8 @@
-import { DataRecord } from '@api';
-import { Node } from '@xyflow/react';
 import './NetworkInterfaceNode.styles.scss';
 import { NETWORK_INTERFACE_NODE_UTILS } from './NetworkInterfaceNode.utils';
+import { CustomNodeProps } from '../nodes.types';
 
-function NetworkInterfaceNode({
-  data: { networkInterfaceId },
-}: Node<DataRecord>) {
+function NetworkInterfaceNode({ data: { record } }: CustomNodeProps) {
   return (
     <div
       className="NetworkInterfaceNode"
@@ -14,7 +11,9 @@ function NetworkInterfaceNode({
         height: NETWORK_INTERFACE_NODE_UTILS.HEIGHT,
       }}
     >
-      <span className="NetworkInterfaceNode_vpcId">{networkInterfaceId}</span>
+      <span className="NetworkInterfaceNode_vpcId">
+        {record.networkInterfaceId}
+      </span>
     </div>
   );
 }

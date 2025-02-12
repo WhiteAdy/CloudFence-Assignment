@@ -1,12 +1,10 @@
-import { DataRecord } from '@api';
-import { Handle, Node, Position } from '@xyflow/react';
+import { Handle, Position } from '@xyflow/react';
 import './ResourceNode.styles.scss';
 import { RESOURCE_NODE_UTILS } from './ResourceNode.utils';
+import { CustomNodeProps } from '../nodes.types';
 
-function ResourceNode({
-  data: { resourceARN, resourceName },
-  ...nodeProps
-}: Node<DataRecord>) {
+function ResourceNode({ data: { record }, ...nodeProps }: CustomNodeProps) {
+  console.log('aici nodeProps.selected', nodeProps.selected);
   return (
     <div
       className="ResourceNode"
@@ -15,12 +13,12 @@ function ResourceNode({
         height: RESOURCE_NODE_UTILS.HEIGHT,
       }}
     >
-      <span className="ResourceNode_resourceName">{resourceName}</span>
-      <span className="ResourceNode_resourceARN">{resourceARN}</span>
+      <span className="ResourceNode_resourceName">{record.resourceName}</span>
+      <span className="ResourceNode_resourceARN">{record.resourceARN}</span>
       <Handle
         type="target"
         position={Position.Right}
-        id={`handle-${resourceARN}`}
+        id={`handle-${record.resourceARN}`}
         isConnectable={false}
         hidden={nodeProps.selected}
       />

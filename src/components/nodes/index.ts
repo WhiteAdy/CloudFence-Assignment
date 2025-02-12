@@ -10,4 +10,4 @@ export { SUBNET_NODE_UTILS } from './SubnetNode/SubnetNode.utils';
 export { default as VpcNode } from './VpcNode/VpcNode';
 export { VPC_NODE_UTILS } from './VpcNode/VpcNode.utils';
 
-export type { CustomNodeProps } from './nodes.types';
+export * from './nodes.types';
