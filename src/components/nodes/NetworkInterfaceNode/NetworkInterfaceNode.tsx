@@ -5,14 +5,14 @@ import { Handle, Position, useReactFlow, useViewport } from '@xyflow/react';
 import { useCallback } from 'react';
 import clsx from 'clsx';
 import { NetworkActivity, NetworkActivityValueAsString } from '@api';
-import { Badge } from '@components';
+import { ArrowRightIcon, Badge, VPC_NODE_UTILS } from '@components';
 
 function NetworkInterfaceNode({
   data: { record },
   ...nodeProps
 }: CustomNodeComponentProps) {
   const { zoom } = useViewport();
-  const { setCenter } = useReactFlow();
+  const { setCenter, getNode } = useReactFlow();
 
   const onClickNetworkInterface = useCallback(() => {
     setCenter(
@@ -26,6 +26,28 @@ function NetworkInterfaceNode({
   const currentNetworkActivityEntries = Object.entries(
     record.baseline.NETWORK_ACTIVITY[currentIp],
   );
+
+  const onClickViewResource = useCallback(() => {
+    const vpcNode = getNode(record.vpcId)!;
+    const subnetNode = getNode(record.subnetId)!;
+    const resourceNode = getNode(record.resourceARN)!;
+    setTimeout(() => {
+      setCenter(
+        vpcNode.position.x +
+          VPC_NODE_UTILS.PADDING +
+          subnetNode.position.x +
+          resourceNode.position.x,
+        vpcNode.position.y +
+          VPC_NODE_UTILS.PADDING +
+          subnetNode.position.y +
+          resourceNode.position.y,
+        {
+          zoom: 2.5,
+          duration: 500,
+        },
+      );
+    }, 50);
+  }, [getNode, record, setCenter]);
 
   return (
     <button
@@ -43,8 +65,8 @@ function NetworkInterfaceNode({
         {record.networkInterfaceId}
       </span>
       <div className="NetworkInterfaceNode_networkActivityTitle">
-        <span>{currentIp}</span>
         <span>Network activity</span>
+        <span>{currentIp}</span>
       </div>
       <div className="NetworkInterfaceNode_networkActivityValuesGrid">
         {currentNetworkActivityEntries.map(([key, value], index) => (
@@ -71,6 +93,12 @@ function NetworkInterfaceNode({
             />
           </div>
         ))}
+      </div>
+      <div
+        className="NetworkInterfaceNode_viewResourceBtn"
+        onClick={onClickViewResource}
+      >
+        <ArrowRightIcon /> View resource
       </div>
       <Handle
         type="source"
