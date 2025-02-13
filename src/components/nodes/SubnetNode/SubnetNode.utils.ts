@@ -11,7 +11,7 @@ import { Node } from '@xyflow/react';
 const GAP = 200;
 
 const SUBNET_NODE_UTILS = {
-  WIDTH: 2 * (RESOURCE_NODE_UTILS.WIDTH + NETWORK_INTERFACE_NODE_UTILS.WIDTH),
+  WIDTH: 1.5 * (RESOURCE_NODE_UTILS.WIDTH + NETWORK_INTERFACE_NODE_UTILS.WIDTH),
   PADDING: 125,
   GAP,
   getRecordsForSubnetId: (allRecords: Array<DataRecord>, subnetId: string) => {

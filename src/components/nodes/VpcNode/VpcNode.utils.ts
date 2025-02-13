@@ -16,7 +16,7 @@ const computeVpcNodeWidth = (allRecords: Array<DataRecord>) => {
 
 const VPC_NODE_UTILS = {
   PADDING: 150,
-  GAP: 150,
+  GAP: 550,
   getRecordsForVpcId: (allRecords: Array<DataRecord>, vpcId: string) => {
     return allRecords.filter((record) => record.vpcId === vpcId);
   },

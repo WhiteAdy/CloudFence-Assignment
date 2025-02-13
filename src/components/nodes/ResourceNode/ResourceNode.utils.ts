@@ -100,8 +100,9 @@ const RESOURCE_NODE_UTILS = {
               extent: 'parent' as const,
               position: {
                 x:
-                  (SUBNET_NODE_UTILS.WIDTH - RESOURCE_NODE_UTILS.WIDTH) / 2 -
-                  NETWORK_INTERFACE_NODE_UTILS.WIDTH * 1.5,
+                  SUBNET_NODE_UTILS.WIDTH -
+                  RESOURCE_NODE_UTILS.WIDTH -
+                  NETWORK_INTERFACE_NODE_UTILS.WIDTH * 2.15,
                 y:
                   SUBNET_NODE_UTILS.PADDING +
                   index * (RESOURCE_NODE_UTILS.HEIGHT + SUBNET_NODE_UTILS.GAP),
