@@ -54,6 +54,7 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       onConnect={onConnect}
       minZoom={0.1}
       maxZoom={5.5}
+      proOptions={{ hideAttribution: true }}
     >
       <Background />
     </ReactFlow>

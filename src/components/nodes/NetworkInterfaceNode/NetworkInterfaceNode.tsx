@@ -4,6 +4,8 @@ import { CustomNodeComponentProps } from '../nodes.types';
 import { Handle, Position, useReactFlow, useViewport } from '@xyflow/react';
 import { useCallback } from 'react';
 import clsx from 'clsx';
+import { NetworkActivity, NetworkActivityValueAsString } from '@api';
+import { Badge } from '@components';
 
 function NetworkInterfaceNode({
   data: { record },
@@ -20,6 +22,11 @@ function NetworkInterfaceNode({
     );
   }, [nodeProps, setCenter]);
 
+  const currentIp = Object.keys(record.baseline.NETWORK_ACTIVITY)[0];
+  const currentNetworkActivityEntries = Object.entries(
+    record.baseline.NETWORK_ACTIVITY[currentIp],
+  );
+
   return (
     <button
       className={clsx('NetworkInterfaceNode', {
@@ -35,6 +42,36 @@ function NetworkInterfaceNode({
       <span className="NetworkInterfaceNode_networkInterfaceId">
         {record.networkInterfaceId}
       </span>
+      <div className="NetworkInterfaceNode_networkActivityTitle">
+        <span>{currentIp}</span>
+        <span>Network activity</span>
+      </div>
+      <div className="NetworkInterfaceNode_networkActivityValuesGrid">
+        {currentNetworkActivityEntries.map(([key, value], index) => (
+          <div
+            key={`currentNetworkActivity-${currentIp}-${key}-${index}`}
+            className="NetworkInterfaceNode_networkActivityValuesGrid_valuesItem"
+          >
+            <span>
+              {NETWORK_INTERFACE_NODE_UTILS.NETWORK_ACTIVITY_KEYS_DICT[
+                key as keyof NetworkActivity
+              ] || key}
+            </span>
+            <Badge
+              text={
+                NETWORK_INTERFACE_NODE_UTILS.NETWORK_ACTIVITY_VALUES_DICT[
+                  key as keyof NetworkActivity
+                ].labels[String(value) as NetworkActivityValueAsString] || key
+              }
+              variant={
+                NETWORK_INTERFACE_NODE_UTILS.NETWORK_ACTIVITY_VALUES_DICT[
+                  key as keyof NetworkActivity
+                ].badgeVariants[String(value) as NetworkActivityValueAsString]
+              }
+            />
+          </div>
+        ))}
+      </div>
       <Handle
         type="source"
         position={Position.Left}

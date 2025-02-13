@@ -1,28 +1,94 @@
 .NetworkInterfaceNode {
-  background-color: mediumseagreen;
-  color: white;
-  display: grid;
-  align-items: center;
-  justify-items: center;
+  // background-color: mediumseagreen;
+  background-color: rgb(135, 178, 218);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   border-radius: var(--border-radius);
   padding: 4px;
   border: 2px solid black;
   cursor: pointer;
+  transition: all 0.4s var(--transition-timing-function);
+  position: relative;
 
-  &_networkInterfaceId {
-    font-size: 20px;
-    font-weight: bold;
+  * {
     transition: all 0.4s var(--transition-timing-function);
   }
 
-  &--isZoomed {
-    background-color: lightblue;
+  &_networkInterfaceId {
+    display: inline-block;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    color: white;
+  }
 
+  &_networkActivityTitle {
+    opacity: 0;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+
+    > :first-of-type {
+      color: white;
+      font-weight: bold;
+    }
+
+    > :last-of-type {
+      font-size: 8px;
+      color: black;
+    }
+  }
+
+  &_networkActivityValuesGrid {
+    display: grid;
+    place-items: center;
+    gap: 4px;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+    scale: 0.5;
+    opacity: 0;
+    border: 1px solid rgb(124, 162, 199);
+    padding: 2px;
+    border-radius: var(--border-radius);
+
+    &_valuesItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+
+      span {
+        font-size: 4px;
+      }
+    }
+  }
+
+  &--isZoomed {
     .NetworkInterfaceNode {
       &_networkInterfaceId {
         color: black;
-        translate: -50px -85px;
+        translate: 0 0;
+        top: -17%;
+        left: -34%;
         scale: 0.5;
+      }
+
+      &_networkActivityTitle {
+        opacity: 1;
+      }
+
+      &_networkActivityValuesGrid {
+        scale: 1;
+        opacity: 1;
       }
     }
   }

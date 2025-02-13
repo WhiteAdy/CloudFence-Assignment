@@ -74,8 +74,33 @@ interface NetworkActivity {
   threatLevel: NetworkActivityValue;
 }
 
-type NetworkActivityValue = boolean | 'restricted' | 'none' | 'full' | null;
+type NetworkActivityValue =
+  | boolean
+  | 'restricted'
+  | 'none'
+  | 'full'
+  | null
+  | 'low'
+  | 'medium'
+  | 'high';
+
+type NetworkActivityValueAsString =
+  | 'true'
+  | 'false'
+  | 'restricted'
+  | 'none'
+  | 'full'
+  | 'null'
+  | 'low'
+  | 'medium'
+  | 'high';
 
 type EmptyObject = Record<string, never>;
 
-export type { Data, DataRecord };
+export type {
+  Data,
+  DataRecord,
+  NetworkActivity,
+  NetworkActivityValue,
+  NetworkActivityValueAsString,
+};

@@ -1,0 +1,25 @@
+.Badge {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 4px;
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 2px;
+  background-color: #007bff;
+
+  &--success {
+    background-color: #28a745;
+  }
+
+  &--warning {
+    background-color: #ffc107;
+  }
+
+  &--danger {
+    background-color: #dc3545;
+  }
+}

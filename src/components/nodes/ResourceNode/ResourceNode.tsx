@@ -41,7 +41,7 @@ function ResourceNode({
           duration: 500,
         },
       );
-    }, 100);
+    }, 50);
   };
 
   return (
@@ -81,7 +81,7 @@ function ResourceNode({
           opacity: RESOURCE_NODE_UTILS.computeResourceArnScaleOrOpacity(zoom),
         }}
       >
-        <span className="ResourceNode_details_left">Private IP</span>
+        <span className="ResourceNode_details_left">Private IP:</span>
         <span className="ResourceNode_details_right">192.168.0.0</span>
         <span className="ResourceNode_details_left">Public IP:</span>
         <span className="ResourceNode_details_right">188.26.8.136</span>
@@ -91,7 +91,7 @@ function ResourceNode({
             className="ResourceNode_details_bottom"
             onClick={() => onClickViewNetworkInterface(networkInterfaceId)}
           >
-            View network interface <b>{networkInterfaceId}</b>{' '}
+            View network interface <b>{networkInterfaceId}</b>
             <ArrowRightIcon />
           </div>
         ))}
