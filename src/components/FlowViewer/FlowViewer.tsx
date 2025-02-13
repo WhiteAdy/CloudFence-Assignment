@@ -9,6 +9,7 @@ import {
 } from '@xyflow/react';
 import {
   NETWORK_INTERFACE_NODE_UTILS,
+  PORTS_NODE_UTILS,
   RESOURCE_NODE_UTILS,
   SUBNET_NODE_UTILS,
   VPC_NODE_UTILS,
@@ -25,6 +26,7 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       resourceNodes: RESOURCE_NODE_UTILS.computeReactFlowNodes(dataRecords),
       networkInterfaceNodes:
         NETWORK_INTERFACE_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      portsNodes: PORTS_NODE_UTILS.computeReactFlowNodes(dataRecords),
     }),
     [dataRecords],
   );

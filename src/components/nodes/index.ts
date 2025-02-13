@@ -10,4 +10,7 @@ export { SUBNET_NODE_UTILS } from './SubnetNode/SubnetNode.utils';
 export { default as VpcNode } from './VpcNode/VpcNode';
 export { VPC_NODE_UTILS } from './VpcNode/VpcNode.utils';
 
+export { default as PortsNode } from './PortsNode/PortsNode';
+export { PORTS_NODE_UTILS } from './PortsNode/PortsNode.utils';
+
 export * from './nodes.types';

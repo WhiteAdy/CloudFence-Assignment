@@ -1,0 +1,80 @@
+.PortsNode {
+  background-color: gray;
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border-radius: var(--border-radius);
+
+  &_inbound,
+  &_outbound {
+    display: flex;
+
+    &_title {
+      padding-block: 8px;
+      text-align: center;
+      font-size: 4px;
+      color: #eee;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      flex-grow: 1;
+      border-right: 1px solid #ccc;
+      width: 65%;
+
+      &_empty {
+        margin-block: 3px;
+        font-size: 4px;
+      }
+
+      path {
+        fill: #eee;
+      }
+    }
+
+    &_handles {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-left: 1px;
+      justify-content: center;
+      width: 35%;
+
+      &_handleWithTitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_title {
+          font-size: 3px;
+          color: #eee;
+          flex-grow: 1;
+          text-align: end;
+        }
+        > .react-flow__handle {
+          position: static;
+          transform: translateX(3.7px);
+        }
+      }
+    }
+  }
+
+  &_outbound {
+    border-bottom: 1px solid #ccc;
+    &_title {
+      flex-direction: column;
+    }
+  }
+
+  &_inbound {
+    &_title {
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+
+      svg {
+        rotate: 180deg;
+      }
+    }
+  }
+}

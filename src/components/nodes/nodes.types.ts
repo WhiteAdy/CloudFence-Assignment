@@ -6,6 +6,7 @@ enum NodeType {
   SUBNET = 'SUBNET',
   RESOURCE = 'RESOURCE',
   NETWORK_INTERFACE = 'NETWORK_INTERFACE',
+  PORTS = 'PORTS',
 }
 
 interface CustomNodeData extends Record<string, unknown> {
