@@ -4,7 +4,7 @@ import { Node } from '@xyflow/react';
 import { NETWORK_INTERFACE_NODE_UTILS } from '../NetworkInterfaceNode/NetworkInterfaceNode.utils';
 
 const WIDTH = 50;
-const HEIGHT = NETWORK_INTERFACE_NODE_UTILS.HEIGHT * 0.85;
+const HEIGHT = NETWORK_INTERFACE_NODE_UTILS.HEIGHT * 0.86;
 
 const PORTS_NODE_UTILS = {
   WIDTH,

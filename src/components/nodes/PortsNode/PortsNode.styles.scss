@@ -13,6 +13,7 @@
       padding-block: 8px;
       text-align: center;
       font-size: 4px;
+      font-weight: bold;
       color: #eee;
       letter-spacing: 0.5px;
       display: flex;
@@ -25,6 +26,7 @@
       &_empty {
         margin-block: 3px;
         font-size: 4px;
+        font-weight: normal;
       }
 
       path {
@@ -62,6 +64,7 @@
 
   &_outbound {
     border-bottom: 1px solid #ccc;
+
     &_title {
       flex-direction: column;
     }
