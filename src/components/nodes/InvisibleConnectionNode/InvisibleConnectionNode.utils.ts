@@ -68,7 +68,7 @@ const INVISIBLE_CONNECTION_NODE_UTILS = {
             targetHandleId: `${id}-targetHandle`,
           },
           position: {
-            x: -65,
+            x: -50,
             y: -100,
           },
           deletable: false,
