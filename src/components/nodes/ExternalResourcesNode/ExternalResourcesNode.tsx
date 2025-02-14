@@ -58,8 +58,7 @@ function ExternalResourcesGroup({
 }
 
 function ExternalResourcesNode({
-  data: { allOutboundPortsEntries, allInboundPortsEntries, record },
-  ...nodeProps
+  data: { allOutboundPortsEntries, allInboundPortsEntries },
 }: ExternalResourceNodeComponentProps) {
   // We reverse them to prevent edges from intersecting
   const allEntriesReversed = [

@@ -4,7 +4,6 @@ import { InvisibleConnectionNodeComponentProps } from './InvisibleConnectionNode
 
 function InvisibleConnectionNode({
   data: { sourceHandleId, targetHandleId },
-  ...nodeProps
 }: InvisibleConnectionNodeComponentProps) {
   return (
     <div className="InvisibleConnectionNode">
