@@ -1,12 +1,9 @@
-import { useReactFlow, useUpdateNodeInternals } from '@xyflow/react';
 import './ExternalResourcesNode.styles.scss';
 
 import {
   ExternalResourceNodeComponentProps,
   ExternalResourcesGroupComponentProps,
 } from './ExternalResourcesNode.types';
-import { NodeType } from '../nodes.types';
-import { useEffect } from 'react';
 
 function ExternalResourcesGroup({
   portNumber,
@@ -64,24 +61,6 @@ function ExternalResourcesNode({
   ].toReversed();
 
   const numOfColumns = allEntriesReversed.length;
-
-  const { addNodes } = useReactFlow();
-  const updateNodeInternals = useUpdateNodeInternals();
-
-  useEffect(() => {
-    addNodes([
-      {
-        id: `InvisibleConnectionNode-${nodeProps.id}`,
-        position: { x: -100, y: -55 },
-        parentId: nodeProps.id,
-        type: NodeType.INVISIBLE_CONNECTION,
-        data: {
-          targetHandleId: `InvisibleConnectionNode-${nodeProps.id}-targetHandle`,
-          sourceHandleId: `InvisibleConnectionNode-${nodeProps.id}-sourceHandle`,
-        },
-      },
-    ]);
-  }, [addNodes, nodeProps.id, updateNodeInternals]);
 
   return (
     <div

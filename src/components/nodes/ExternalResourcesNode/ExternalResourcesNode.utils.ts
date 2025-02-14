@@ -63,7 +63,7 @@ const EXTERNAL_RESOURCES_NODE_UTILS = {
         }) => {
           return {
             type: NodeType.EXTERNAL_RESOURCES,
-            id: `external-resources-${networkInterfaceId}`,
+            id: `externalResourcesNode-${networkInterfaceId}`,
             data: {
               allOutboundPortsEntries,
               allInboundPortsEntries,

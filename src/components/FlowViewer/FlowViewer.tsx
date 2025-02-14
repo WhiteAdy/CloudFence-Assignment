@@ -18,6 +18,7 @@ import {
 import { computeReactFlowEdges, customNodeTypes } from './FlowViewer.utils';
 import '@xyflow/react/dist/style.css';
 import { useCallback, useMemo } from 'react';
+import { INVISIBLE_CONNECTION_NODE_UTILS } from '../nodes/InvisibleConnectionNode/InvisibleConnectionNode.utils';
 
 function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
   const computedNodesRecord = useMemo(
@@ -30,6 +31,8 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       portsNodes: PORTS_NODE_UTILS.computeReactFlowNodes(dataRecords),
       externalResourcesNodes:
         EXTERNAL_RESOURCES_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      invisibleConnectionNodes:
+        INVISIBLE_CONNECTION_NODE_UTILS.computeReactFlowNodes(dataRecords),
     }),
     [dataRecords],
   );

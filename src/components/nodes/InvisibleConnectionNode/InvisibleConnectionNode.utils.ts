@@ -1,7 +1,7 @@
 import { DataRecord } from '@api';
-import { CustomNodeData, NodeType } from '../nodes.types';
-import { RESOURCE_NODE_UTILS, SUBNET_NODE_UTILS } from '@components';
+import { NodeType } from '../nodes.types';
 import { Node } from '@xyflow/react';
+import { InvisibleConnectionNodeData } from './InvisibleConnectionNode.types';
 
 const WIDTH = 50;
 const HEIGHT = 50;
@@ -11,30 +11,68 @@ const INVISIBLE_CONNECTION_NODE_UTILS = {
   HEIGHT,
   computeReactFlowNodes: (
     allRecords: Array<DataRecord>,
-  ): Array<Node<CustomNodeData>> => {
-    // const resourceRecordsGrouped = Object.groupBy(
-    //   allRecords,
-    //   (record) => record.resourceARN,
-    // );
-    // const networkInterfaceNodeEntries = Object.entries(
-    //   resourceRecordsGrouped,
-    // ).map(([resourceARN, records]) =>
-    //   records!.map((record, index) => {
-    //     return {
-    //       type: NodeType.NETWORK_INTERFACE,
-    //       id: record.networkInterfaceId,
-    //       data: { record, allRecords },
-    //       parentId: resourceARN,
-    //       position: {
-    //         x: RESOURCE_NODE_UTILS.WIDTH + SUBNET_NODE_UTILS.PADDING,
-    //         y:
-    //           index * (NETWORK_INTERFACE_NODE_UTILS.HEIGHT + GAP_BETWEEN_NODES),
-    //       },
-    //       draggable: false,
-    //     };
-    //   }),
-    // );
-    // return networkInterfaceNodeEntries.flat();
+  ): Array<Node<InvisibleConnectionNodeData>> => {
+    const networkInterfaceRecords = Object.groupBy(
+      allRecords,
+      (record) => record.networkInterfaceId,
+    );
+
+    const networkInterfaceRecordsMapped = Object.entries(
+      networkInterfaceRecords,
+    ).map(([networkInterfaceId, record]) => {
+      const privateInboundTcpPortsEntries = Object.entries(
+        record![0].baseline.PRIVATE_INBOUND.ports.TCP,
+      );
+      const privateInboundUdpPortsEntries = Object.entries(
+        record![0].baseline.PRIVATE_INBOUND.ports.UDP,
+      );
+      const privateOutboundTcpPortsEntries = Object.entries(
+        record![0].baseline.PRIVATE_OUTBOUND.ports.TCP,
+      );
+      const privateOutboundUdpPortsEntries = Object.entries(
+        record![0].baseline.PRIVATE_OUTBOUND.ports.UDP,
+      );
+
+      const allOutboundPortsEntries = [
+        ...privateOutboundTcpPortsEntries,
+        ...privateOutboundUdpPortsEntries,
+      ];
+      const allInboundPortsEntries = [
+        ...privateInboundTcpPortsEntries,
+        ...privateInboundUdpPortsEntries,
+      ];
+
+      return {
+        networkInterfaceId,
+        allOutboundPortsEntries,
+        allInboundPortsEntries,
+      };
+    });
+
+    return networkInterfaceRecordsMapped
+      .filter(
+        ({ allOutboundPortsEntries, allInboundPortsEntries }) =>
+          [...allOutboundPortsEntries, ...allInboundPortsEntries].length > 0,
+      )
+      .map(({ networkInterfaceId }) => {
+        const parentId = `externalResourcesNode-${networkInterfaceId}`;
+        const id = `InvisibleConnectionNode-${parentId}`;
+        return {
+          type: NodeType.INVISIBLE_CONNECTION,
+          id,
+          parentId,
+          data: {
+            sourceHandleId: `${id}-sourceHandle`,
+            targetHandleId: `${id}-targetHandle`,
+          },
+          position: {
+            x: -65,
+            y: -100,
+          },
+          deletable: false,
+          draggable: false,
+        };
+      });
   },
 };
 
