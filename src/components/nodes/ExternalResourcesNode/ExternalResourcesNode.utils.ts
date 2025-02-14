@@ -72,7 +72,7 @@ const EXTERNAL_RESOURCES_NODE_UTILS = {
             },
             parentId: networkInterfaceId,
             position: {
-              x: VPC_NODE_UTILS.computeWidth(allRecords) / 6,
+              x: VPC_NODE_UTILS.computeWidth(allRecords) / 2,
               y: VPC_NODE_UTILS.computeHeight(allRecords),
             },
             deletable: false,
