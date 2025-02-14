@@ -59,7 +59,6 @@ function PortsNode({ data: { record } }: CustomNodeComponentProps) {
                   position={Position.Top}
                   id={id}
                   isConnectable={false}
-                  title="asd"
                 />
               </div>
             );

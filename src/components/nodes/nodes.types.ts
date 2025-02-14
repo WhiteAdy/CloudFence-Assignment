@@ -8,6 +8,7 @@ enum NodeType {
   NETWORK_INTERFACE = 'NETWORK_INTERFACE',
   PORTS = 'PORTS',
   EXTERNAL_RESOURCES = 'EXTERNAL_RESOURCES',
+  INVISIBLE_CONNECTION = 'INVISIBLE_CONNECTION',
 }
 
 interface CustomNodeData extends Record<string, unknown> {
