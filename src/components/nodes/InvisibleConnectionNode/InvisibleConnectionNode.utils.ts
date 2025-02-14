@@ -49,12 +49,14 @@ const INVISIBLE_CONNECTION_NODE_UTILS = {
       };
     });
 
-    return networkInterfaceRecordsMapped
-      .filter(
+    const networkInterfaceRecordsMappedFiltered =
+      networkInterfaceRecordsMapped.filter(
         ({ allOutboundPortsEntries, allInboundPortsEntries }) =>
           [...allOutboundPortsEntries, ...allInboundPortsEntries].length > 0,
-      )
-      .map(({ networkInterfaceId }) => {
+      );
+
+    return networkInterfaceRecordsMappedFiltered.map(
+      ({ networkInterfaceId }) => {
         const parentId = `externalResourcesNode-${networkInterfaceId}`;
         const id = `InvisibleConnectionNode-${parentId}`;
         return {
@@ -72,7 +74,8 @@ const INVISIBLE_CONNECTION_NODE_UTILS = {
           deletable: false,
           draggable: false,
         };
-      });
+      },
+    );
   },
 };
 

@@ -1,3 +1,4 @@
+import { Handle, Position } from '@xyflow/react';
 import './ExternalResourcesNode.styles.scss';
 
 import {
@@ -12,6 +13,12 @@ function ExternalResourcesGroup({
 }: ExternalResourcesGroupComponentProps) {
   return (
     <div className="ExternalResourcesNode_Group">
+      <Handle
+        type="target"
+        position={Position.Top}
+        id={`ExternalResourcesNodeGroup-${portNumber}-handle`}
+        className="ExternalResourcesNode_Group_handle"
+      />
       <div className="ExternalResourcesNode_Group_portNumber">{portNumber}</div>
       {assets?.map((asset, index) => {
         const assetEntries = Object.entries(asset);

@@ -185,11 +185,87 @@ const computeInboundPortsNodeToInvisibleConnectionEdges = (
   });
 };
 
+const computeInboundInvisibleConnectionToResourceGroupEdges = (
+  allRecords: Array<DataRecord>,
+): Array<Edge> => {
+  const networkInterfaceRecords = Object.groupBy(
+    allRecords,
+    (record) => record.networkInterfaceId,
+  );
+
+  const networkInterfaceRecordsMapped = Object.entries(
+    networkInterfaceRecords,
+  ).map(
+    ([
+      networkInterfaceId,
+      [
+        {
+          baseline: { PRIVATE_INBOUND },
+        },
+      ],
+    ]) => {
+      const privateInboundTcpPorts = Object.keys(PRIVATE_INBOUND.ports.TCP);
+      const privateInboundUdpPorts = Object.keys(PRIVATE_INBOUND.ports.UDP);
+
+      const allInboundPorts = [
+        ...privateInboundTcpPorts,
+        ...privateInboundUdpPorts,
+      ];
+
+      return {
+        networkInterfaceId,
+        allInboundPorts,
+      };
+    },
+  );
+
+  const networkInterfaceRecordsMappedFiltered =
+    networkInterfaceRecordsMapped.filter(
+      ({ allInboundPorts }) => allInboundPorts.length > 0,
+    );
+
+  const portsMapped = networkInterfaceRecordsMappedFiltered.reduce(
+    // @ts-expect-error typing
+    (acc, { networkInterfaceId, allInboundPorts }) => {
+      return [
+        ...acc,
+        ...[
+          ...allInboundPorts.map((portNumber) => ({
+            networkInterfaceId,
+            portNumber,
+          })),
+        ],
+      ];
+    },
+    [],
+  );
+
+  console.log('aia: ', portsMapped);
+
+  // @ts-expect-error typing
+  return portsMapped.map(({ networkInterfaceId, portNumber }) => {
+    const invisibleConnectionNodeId = `InvisibleConnectionNode-externalResourcesNode-${networkInterfaceId}`;
+    const externalResourceNodeId = `externalResourcesNode-${networkInterfaceId}`;
+    const edgeId = `${invisibleConnectionNodeId}-${externalResourceNodeId}-${portNumber}`;
+
+    return {
+      id: edgeId,
+      source: invisibleConnectionNodeId,
+      target: externalResourceNodeId,
+      // sourceHandle: portsNodeHandleId,
+      style: { zIndex: 123, animationDirection: 'reverse' },
+      focusable: false,
+      animated: true,
+    };
+  });
+};
+
 const computeReactFlowEdges = (allRecords: Array<DataRecord>): Array<Edge> => {
   return [
     ...computeResourceToNetworkInterfaceEdges(allRecords),
     ...computeOutboundPortsNodeToInvisibleConnectionEdges(allRecords),
     ...computeInboundPortsNodeToInvisibleConnectionEdges(allRecords),
+    ...computeInboundInvisibleConnectionToResourceGroupEdges(allRecords),
   ];
 };
 
