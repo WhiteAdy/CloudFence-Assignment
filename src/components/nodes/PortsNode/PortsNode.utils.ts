@@ -27,7 +27,7 @@ const PORTS_NODE_UTILS = {
         },
         parentId: networkInterfaceId,
         position: {
-          x: NETWORK_INTERFACE_NODE_UTILS.WIDTH - WIDTH / 2,
+          x: NETWORK_INTERFACE_NODE_UTILS.WIDTH - WIDTH / 3,
           y: (NETWORK_INTERFACE_NODE_UTILS.HEIGHT - HEIGHT) / 2,
         },
         draggable: false,

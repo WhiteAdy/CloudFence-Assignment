@@ -4,7 +4,7 @@ import { PORTS_NODE_UTILS } from './PortsNode.utils';
 import { ArrowRightIcon } from '@components';
 import { Handle, Position } from '@xyflow/react';
 
-function PortsNode({ data: { record, allRecords } }: CustomNodeComponentProps) {
+function PortsNode({ data: { record } }: CustomNodeComponentProps) {
   const privateInboundTcpPortsEntries = Object.entries(
     record.baseline.PRIVATE_INBOUND.ports.TCP,
   );

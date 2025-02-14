@@ -34,18 +34,14 @@ interface Traffic {
   };
 }
 
-type Port =
-  | Record<
-      string,
-      | {
-          cidr?: RoutingAddress;
-          subnedIds?: Array<unknown>;
-          assets?: Array<Asset>;
-          domains?: Array<string>;
-        }
-      | RoutingAddress
-    >
-  | EmptyObject;
+type CidrStuff = {
+  cidr?: RoutingAddress;
+  subnedIds?: Array<unknown>;
+  assets?: Array<Asset>;
+  domains?: Array<string>;
+};
+
+type Port = Record<string, CidrStuff | RoutingAddress> | EmptyObject;
 
 interface RoutingAddress {
   addressIP: string | null;
@@ -103,4 +99,7 @@ export type {
   NetworkActivity,
   NetworkActivityValue,
   NetworkActivityValueAsString,
+  Asset,
+  CidrStuff,
+  RoutingAddress,
 };

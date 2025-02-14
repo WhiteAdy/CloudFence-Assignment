@@ -1,5 +1,6 @@
 import { DataRecord } from '@api';
 import {
+  ExternalResourcesNode,
   NetworkInterfaceNode,
   NodeType,
   PortsNode,
@@ -16,6 +17,7 @@ const customNodeTypes: Record<NodeType, ComponentType<any>> = {
   [NodeType.RESOURCE]: ResourceNode,
   [NodeType.NETWORK_INTERFACE]: NetworkInterfaceNode,
   [NodeType.PORTS]: PortsNode,
+  [NodeType.EXTERNAL_RESOURCES]: ExternalResourcesNode,
 };
 
 const computeReactFlowEdges = (allRecords: Array<DataRecord>): Array<Edge> => {

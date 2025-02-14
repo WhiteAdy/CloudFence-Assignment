@@ -1,0 +1,46 @@
+.ExternalResourcesNode {
+  border: 1px solid yellowgreen;
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--border-radius);
+
+  &_Group {
+    width: 100%;
+    background: yellowgreen;
+    padding: 8px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &_portNumber {
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    &_assetInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background-color: rgb(18, 101, 68);
+      border-radius: var(--border-radius);
+      padding: 4px;
+      font-size: 4px;
+
+      &_entry {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        color: white;
+
+        > *:nth-of-type(2) {
+          max-width: 60px;
+          overflow-wrap: anywhere;
+        }
+      }
+    }
+  }
+}

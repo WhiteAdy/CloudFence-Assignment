@@ -8,6 +8,7 @@ import {
   useNodesState,
 } from '@xyflow/react';
 import {
+  EXTERNAL_RESOURCES_NODE_UTILS,
   NETWORK_INTERFACE_NODE_UTILS,
   PORTS_NODE_UTILS,
   RESOURCE_NODE_UTILS,
@@ -27,6 +28,8 @@ function FlowViewer({ dataRecords }: { dataRecords: Array<DataRecord> }) {
       networkInterfaceNodes:
         NETWORK_INTERFACE_NODE_UTILS.computeReactFlowNodes(dataRecords),
       portsNodes: PORTS_NODE_UTILS.computeReactFlowNodes(dataRecords),
+      externalResourcesNodes:
+        EXTERNAL_RESOURCES_NODE_UTILS.computeReactFlowNodes(dataRecords),
     }),
     [dataRecords],
   );

@@ -13,4 +13,7 @@ export { VPC_NODE_UTILS } from './VpcNode/VpcNode.utils';
 export { default as PortsNode } from './PortsNode/PortsNode';
 export { PORTS_NODE_UTILS } from './PortsNode/PortsNode.utils';
 
+export { default as ExternalResourcesNode } from './ExternalResourcesNode/ExternalResourcesNode';
+export { EXTERNAL_RESOURCES_NODE_UTILS } from './ExternalResourcesNode/ExternalResourcesNode.utils';
+
 export * from './nodes.types';
